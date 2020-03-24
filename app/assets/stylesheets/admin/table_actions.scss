@@ -4,22 +4,7 @@
 
   a,
   button {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    font-size: 0.9em;
-    line-height: $global-lineheight;
-    position: relative;
-    text-align: center;
-
-    &:hover,
-    &:focus {
-      color: $link-hover;
-    }
-
-    &::before {
-      font-size: 1.6em;
-    }
+    @include icon-on-top;
   }
 
   button {
@@ -117,7 +102,6 @@
     @include has-fa-icon(coins, solid);
   }
 
-  .groups-link,
   .headings-link {
     @include has-fa-icon(chart-pie, solid);
     color: $color-success;

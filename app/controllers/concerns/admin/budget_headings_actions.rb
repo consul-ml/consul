@@ -8,7 +8,6 @@ module Admin::BudgetHeadingsActions
 
     before_action :load_budget
     before_action :load_group
-    before_action :load_headings, only: :index
     before_action :load_heading, only: [:edit, :update, :destroy]
   end
 
