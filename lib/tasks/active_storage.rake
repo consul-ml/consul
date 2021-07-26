@@ -42,11 +42,19 @@ namespace :active_storage do
           attachments.each do |attachment|
             next if instance.send(:"storage_#{attachment}").attached?
 
-            source = instance.send(attachment).path
+            source = if Paperclip::Attachment.default_options[:storage] == :filesystem
+                       instance.send(attachment).path
+                     else
+                       instance.send(attachment).url
+                     end
 
             next if source.blank?
 
-            file = File.read(source) if File.exist?(source)
+            file = if Paperclip::Attachment.default_options[:storage] == :filesystem
+                     File.read(source) if File.exist?(source)
+                   else
+                     Net::HTTP.get(URI(source))
+                   end
 
             connection.exec_prepared(
               statement_name, [
@@ -66,18 +74,20 @@ namespace :active_storage do
       end
     end
 
-    ActiveStorage::Attachment.find_each do |attachment|
-      dest = ActiveStorage::Blob.service.path_for(attachment.blob.key)
+    if Paperclip::Attachment.default_options[:storage] == :filesystem
+      ActiveStorage::Attachment.find_each do |attachment|
+        dest = ActiveStorage::Blob.service.path_for(attachment.blob.key)
 
-      next if File.exist?(dest) || !attachment.record
+        next if File.exist?(dest) || !attachment.record
 
-      name = attachment.name.gsub("storage_", "")
-      source = attachment.record.send(name).path
+        name = attachment.name.gsub("storage_", "")
+        source = attachment.record.send(name).path
 
-      if source && File.exist?(source)
-        FileUtils.mkdir_p(File.dirname(dest))
-        logger.info "Copying #{source} to #{dest}"
-        FileUtils.cp(source, dest)
+        if source && File.exist?(source)
+          FileUtils.mkdir_p(File.dirname(dest))
+          logger.info "Copying #{source} to #{dest}"
+          FileUtils.cp(source, dest)
+        end
       end
     end
   end
