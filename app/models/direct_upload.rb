@@ -33,6 +33,10 @@ class DirectUpload
     end
   end
 
+  def url
+    relation.attachment.url
+  end
+
   def save_attachment
     @relation.attachment.save
   end

@@ -18,12 +18,12 @@ describe "Documents", :admin do
     1.times { create(:document) }
 
     document = Document.first
-    attachment = document.attachment
+    url = document.url
 
     visit admin_site_customization_documents_path
 
     expect(page).to have_content "There are 3 documents"
-    expect(page).to have_link document.title, href: attachment.url
+    expect(page).to have_link document.title, href: url
   end
 
   scenario "Index (empty)" do
@@ -58,7 +58,7 @@ describe "Documents", :admin do
     click_button "Upload"
 
     expect(page).to have_content "Document uploaded succesfully"
-    expect(page).to have_link "logo.pdf", href: Document.last.attachment.url
+    expect(page).to have_link "logo.pdf", href: Document.last.url
   end
 
   scenario "Errors on create" do

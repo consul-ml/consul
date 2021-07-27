@@ -23,7 +23,7 @@
           <td><%= document.title %></td>
           <td><%= document.attachment.content_type %></td>
           <td><%= number_to_human_size(document.attachment.size) %></td>
-          <td><%= link_to document.title, document.attachment.url, target: :blank %></td>
+          <td><%= link_to document.title, document.url, target: :blank %></td>
           <td>
             <div class="small-12 medium-6 column">
               <%= render Admin::TableActionsComponent.new(

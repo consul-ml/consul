@@ -19,6 +19,14 @@ module Attachable
     end
   end
 
+  def url(style = nil)
+    if style
+      attachment.url(style)
+    else
+      attachment.url
+    end
+  end
+
   def association_class
     type = send("#{association_name}_type")
 
