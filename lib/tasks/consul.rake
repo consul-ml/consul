@@ -4,9 +4,9 @@ namespace :consul do
                                "settings:add_new_settings",
                                "execute_release_1.4.0_tasks"]
 
-  desc "Runs tasks needed to upgrade from 1.3.0 to 1.4.0"
-  task "execute_release_1.4.0_tasks": [
-    "active_storage:migrate_from_paperclip"
+  desc "Runs tasks needed to upgrade from 1.5.0 to 1.5.0"
+  task "execute_release_1.5.0_tasks": [
+    "active_storage:remove_paperclip_compatibility_in_existing_attachments"
   ]
 
   desc "Runs tasks needed to upgrade from 1.2.0 to 1.3.0"

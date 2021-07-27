@@ -11,8 +11,8 @@ describe "files tasks" do
       image = build(:image)
       document = build(:document)
 
-      image.storage_attachment.blob.save!
-      document.storage_attachment.blob.save!
+      image.attachment.blob.save!
+      document.attachment.blob.save!
       image_file_path = image.file_path
       document_file_path = document.file_path
 
@@ -26,8 +26,8 @@ describe "files tasks" do
       image = build(:image)
       document = build(:document)
 
-      image.storage_attachment.blob.save!
-      document.storage_attachment.blob.save!
+      image.attachment.blob.save!
+      document.attachment.blob.save!
       image_file_path = image.file_path
       document_file_path = document.file_path
 

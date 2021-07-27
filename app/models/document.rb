@@ -1,10 +1,6 @@
 class Document < ApplicationRecord
   include Attachable
-
-  has_attachment :attachment, url: "/system/:class/:attachment/:id_partition/:style/:hash.:extension",
-                              hash_data: ":class/:style/:custom_hash_data",
-                              use_timestamp: false,
-                              hash_secret: Rails.application.secrets.secret_key_base
+  has_attachment :attachment
 
   belongs_to :user
   belongs_to :documentable, polymorphic: true
@@ -16,21 +12,8 @@ class Document < ApplicationRecord
 
   scope :admin, -> { where(admin: true) }
 
-  Paperclip.interpolates :custom_hash_data do |attachment, _style|
-    attachment.instance.custom_hash_data(attachment)
-  end
-
   def self.humanized_accepted_content_types
     Setting.accepted_content_types_for("documents").join(", ")
-  end
-
-  def custom_hash_data(attachment)
-    original_filename = if !attachment.instance.persisted?
-                          attachment.instance.attachment_file_name
-                        else
-                          attachment.instance.title
-                        end
-    "#{attachment.instance.user_id}/#{original_filename}"
   end
 
   def humanized_content_type
