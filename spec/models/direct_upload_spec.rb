@@ -34,13 +34,27 @@ describe DirectUpload do
   end
 
   context "save_attachment" do
-    it "saves uploaded file" do
-      proposal_document_direct_upload = build(:direct_upload, :proposal, :documents)
+    it "saves uploaded file without creating an attachment record" do
+      direct_upload = build(:direct_upload, :proposal, :documents)
 
-      proposal_document_direct_upload.save_attachment
+      direct_upload.save_attachment
 
-      expect(File.exist?(proposal_document_direct_upload.relation.attachment.path)).to eq(true)
-      expect(proposal_document_direct_upload.relation.attachment.path).to include("cached_attachments")
+      expect(File.exist?(direct_upload.relation.file_path)).to be true
+      expect(direct_upload.relation.storage_attachment.blob).to be_persisted
+      expect(direct_upload.relation.storage_attachment.attachment).not_to be_persisted
+    end
+
+    it "generates different URLs for different attachments" do
+      user = create(:user)
+      clippy = build(:direct_upload, :proposal, :image, user: user,
+                     attachment: File.new("spec/fixtures/files/clippy.png"))
+      logo = build(:direct_upload, :proposal, :image, user: user,
+                    attachment: File.new("spec/fixtures/files/logo_header.png"))
+
+      clippy.save_attachment
+      logo.save_attachment
+
+      expect(clippy.url).not_to eq logo.url
     end
   end
 end

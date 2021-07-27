@@ -16,7 +16,7 @@ class DirectUploadsController < ApplicationController
       @direct_upload.relation.set_cached_attachment_from_attachment
 
       render json: { cached_attachment: @direct_upload.relation.cached_attachment,
-                     filename: @direct_upload.relation.attachment.original_filename,
+                     filename: @direct_upload.relation.storage_attachment.filename.to_s,
                      destroy_link: render_destroy_upload_link(@direct_upload),
                      attachment_url: @direct_upload.url }
     else
