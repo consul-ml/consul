@@ -38,7 +38,7 @@ class SiteCustomization::Image < ApplicationRecord
   end
 
   def path
-    image.url if image.exists?
+    storage_image if storage_image.attachment&.persisted?
   end
 
   private
