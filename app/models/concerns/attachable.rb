@@ -21,10 +21,14 @@ module Attachable
 
   def url(style = nil)
     if style
-      attachment.url(style)
+      Rails.application.routes.url_helpers.polymorphic_path(variant(style), only_path: true)
     else
-      attachment.url
+      Rails.application.routes.url_helpers.polymorphic_path(storage_attachment, only_path: true)
     end
+  end
+
+  def variant(style)
+    storage_attachment.variant(self.class.styles[style])
   end
 
   def association_class

@@ -14,6 +14,17 @@ describe Document do
     expect(document.storage_attachment.filename).to eq "clippy.pdf"
   end
 
+  describe "#url" do
+    it "does not depend on the title of the document" do
+      document = create(:document, :proposal_document, title: "Original title")
+      original_url = document.url
+
+      document.update!(title: "Modified title")
+
+      expect(document.url).to eq original_url
+    end
+  end
+
   context "scopes" do
     describe "#admin" do
       it "returns admin documents" do
