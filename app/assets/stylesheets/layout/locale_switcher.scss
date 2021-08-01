@@ -33,20 +33,14 @@
       font-size: $small-font-size;
       height: $line-height;
       margin-bottom: 0;
-      outline: none;
       padding-left: $line-height / 4;
       padding-right: calc(#{$line-height / 4} + 1em);
       width: auto;
-
-      &:focus {
-        outline: $outline-focus;
-      }
 
       option {
         background: $body-background;
         color: $text;
         border: 0;
-        outline: none;
       }
     }
   }
