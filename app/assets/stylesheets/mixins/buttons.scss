@@ -39,10 +39,6 @@
     color: $link-hover;
     text-decoration: underline;
   }
-
-  &:focus {
-    outline: $outline-focus;
-  }
 }
 
 @mixin switch {
@@ -51,10 +47,6 @@
   font-weight: bold;
   min-width: rem-calc(100);
   position: relative;
-
-  &:focus {
-    outline: $outline-focus;
-  }
 
   &::after {
     background: $white;

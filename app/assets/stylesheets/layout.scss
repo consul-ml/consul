@@ -106,6 +106,16 @@ a {
 
   &:focus {
     color: $link-hover;
+  }
+}
+
+a,
+button,
+input,
+select,
+textarea,
+[type] {
+  &:focus {
     outline: $outline-focus;
   }
 }
@@ -2400,10 +2410,6 @@ table {
 
   @include breakpoint(medium) {
     float: right;
-  }
-
-  &:focus {
-    outline: $outline-focus;
   }
 
   &[aria-expanded="false"] + form {
