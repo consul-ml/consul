@@ -5,7 +5,8 @@
     margin-left: rem-calc(10);
   }
 
-  a {
+  a,
+  button {
     align-items: center;
     display: flex;
     flex-direction: column;
@@ -22,6 +23,14 @@
 
     &::before {
       font-size: 1.6em;
+    }
+  }
+
+  button {
+    cursor: pointer;
+
+    &:focus {
+      outline: $outline-focus;
     }
   }
 
@@ -121,6 +130,7 @@
   .manage-link,
   .ballots-link {
     @include has-fa-icon(archive, solid);
+    color: $link;
   }
 
   .cards-link {
