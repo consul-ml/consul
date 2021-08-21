@@ -1,5 +1,5 @@
 .admin .drafting {
-  margin-bottom: 2 * $line-height / 3;
+  margin-bottom: $line-height * 1.5;
   margin-left: auto;
 
   @include breakpoint(large) {
@@ -20,22 +20,9 @@
     }
   }
 
-  .preview-link {
-    @include has-fa-icon(eye, regular);
-    @include hollow-button;
-
-    &::before {
-      margin-right: $font-icon-margin;
-    }
-  }
-
   .publish-link {
     @include regular-button;
     margin-bottom: 0;
-  }
-
-  .preview-link,
-  .publish-link {
     margin-left: $line-height / 2;
   }
 }
