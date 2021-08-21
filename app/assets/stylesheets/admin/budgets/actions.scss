@@ -1,0 +1,24 @@
+.admin .budgets-actions {
+  $gap: $line-height;
+  @include flex-with-gap($gap);
+  align-items: baseline;
+  flex-wrap: wrap;
+  margin-bottom: $line-height;
+  margin-top: -$gap;
+
+  > * {
+    margin-bottom: 0;
+    margin-top: $gap;
+  }
+
+  .preview-link {
+    @include has-fa-icon(eye, regular);
+    @include hollow-button;
+    margin-left: $gap;
+    margin-top: $gap;
+
+    &::before {
+      margin-#{$global-right}: $font-icon-margin;
+    }
+  }
+}
