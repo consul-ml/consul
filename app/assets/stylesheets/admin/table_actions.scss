@@ -1,9 +1,6 @@
 .admin .table-actions {
-  display: flex;
-
-  > :not(:first-child) {
-    margin-left: rem-calc(10);
-  }
+  @include flex-with-gap(1.6em);
+  padding: 0 0.5em;
 
   a,
   button {
@@ -12,7 +9,6 @@
     flex-direction: column;
     font-size: 0.9em;
     line-height: $global-lineheight;
-    margin-right: 1em;
     position: relative;
     text-align: center;
 
