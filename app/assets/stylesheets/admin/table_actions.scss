@@ -62,7 +62,7 @@
   .investments-link {
     color: darken($warning-color, 20%);
 
-    &::before {
+    &:not(:hover, :focus)::before {
       color: $warning-color;
     }
   }
