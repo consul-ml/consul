@@ -1519,6 +1519,7 @@ $font-awesome-icons: (
   &:hover,
   &:focus {
     color: $link-hover;
+    text-decoration: none;
   }
 
   &::before {
