@@ -78,4 +78,10 @@ describe SDG::Goal do
       expect(goal.description).to eq "Poner fin a la pobreza en todas sus formas en todo el mundo."
     end
   end
+
+  describe "#official_title" do
+    it "returns the title" do
+      expect(SDG::Goal[1].official_title).to eq "No Poverty"
+    end
+  end
 end
