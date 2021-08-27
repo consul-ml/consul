@@ -572,6 +572,7 @@ body > header,
 
   .menu > li {
     display: block;
+    margin-bottom: 0;
     width: 100%;
 
     @include breakpoint(medium) {
@@ -609,6 +610,17 @@ body > header,
   }
 
   .menu {
+
+    @include breakpoint(small only) {
+      border-bottom: 1px solid $border;
+      margin-bottom: $line-height;
+      margin-top: $line-height / 2;
+      padding-bottom: $line-height;
+
+      .submenu {
+        margin-top: 0;
+      }
+    }
 
     &.is-dropdown-submenu {
       background: $body-background;
