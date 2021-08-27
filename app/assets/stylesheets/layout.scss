@@ -118,6 +118,25 @@ textarea,
   &:focus {
     outline: $outline-focus;
   }
+
+  &:focus-visible {
+    outline: $outline-focus;
+  }
+
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
+}
+
+a,
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  &:active,
+  &:focus:active {
+    outline: $outline-focus;
+  }
 }
 
 .button {
