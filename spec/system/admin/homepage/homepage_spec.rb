@@ -153,11 +153,12 @@ describe "Homepage", :admin do
     create(:proposal, tag_list: "Sport")
 
     visit admin_homepage_path
+
     within("#edit_setting_#{user_recommendations.id}") do
       click_button "No"
-    end
 
-    expect(page).to have_content "Value updated"
+      expect(page).to have_button "Yes"
+    end
 
     login_as(user)
     visit root_path
