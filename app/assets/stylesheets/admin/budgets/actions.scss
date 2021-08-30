@@ -1,18 +1,48 @@
 .admin .budgets-actions {
-  $gap: $line-height;
-  @include flex-with-gap($gap);
-  align-items: baseline;
-  flex-wrap: wrap;
-  margin-bottom: $line-height;
-  margin-top: -$gap;
-
   > * {
-    margin-top: $gap;
-  }
+    $gap: $line-height;
+    $vertical-gap: $line-height / 2;
+    @include flex-with-gap($gap);
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: -$vertical-gap;
 
-  a,
-  button {
-    margin-bottom: 0;
+    > * {
+      margin-top: $vertical-gap;
+    }
+
+    dt {
+      flex-basis: 12em;
+
+      @include breakpoint(large) {
+        text-align: right;
+      }
+    }
+
+    &:only-child dt {
+      flex-basis: auto;
+    }
+
+    dd {
+      flex-basis: 20em;
+      flex-grow: 1;
+      max-width: $global-width * 3 / 4;
+    }
+
+    + * {
+      margin-top: $line-height * 2;
+      padding-top: $line-height;
+      position: relative;
+
+      &::before {
+        border-top: $admin-border;
+        content: "";
+        #{$global-left}: $gap;
+        top: 0;
+        position: absolute;
+        width: calc(100% - #{$gap});
+      }
+    }
   }
 
   button {
@@ -23,12 +53,26 @@
     }
   }
 
-  .delete {
-    cursor: pointer;
-  }
-
   .calculate-winners-link {
     @include hollow-button;
+  }
+
+  .destroy-link {
+    @include regular-button($alert-color);
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+      background-color: $color-alert;
+    }
+
+    &[disabled] {
+      opacity: 0.4;
+    }
+  }
+
+  .calculate-winners-link,
+  .destroy-link {
     margin-bottom: 0;
   }
 }
