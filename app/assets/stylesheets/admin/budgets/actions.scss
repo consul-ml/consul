@@ -57,6 +57,10 @@
     @include hollow-button;
   }
 
+  .ballots-link {
+    @include regular-button;
+  }
+
   .destroy-link {
     @include regular-button($alert-color);
     cursor: pointer;
@@ -72,6 +76,7 @@
   }
 
   .calculate-winners-link,
+  .ballots-link,
   .destroy-link {
     margin-bottom: 0;
   }
