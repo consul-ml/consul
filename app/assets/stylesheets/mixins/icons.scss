@@ -1620,8 +1620,7 @@ $font-awesome-icons: (
     color: $color-success;
   }
 
-  .manage-link,
-  .ballots-link {
+  .manage-link {
     @include has-fa-icon(archive, solid);
     color: $link;
   }
