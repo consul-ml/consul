@@ -6,20 +6,6 @@
     margin-top: $line-height * 1.5;
   }
 
-  > section {
-    display: flex;
-    flex-wrap: wrap;
-  }
-
-  h4 {
-    margin-#{$global-right}: $gap;
-  }
-
-  dl,
-  .callout {
-    width: 100%;
-  }
-
   dt,
   dd {
     display: inline;
