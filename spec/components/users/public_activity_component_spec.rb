@@ -79,4 +79,23 @@ describe Users::PublicActivityComponent, controller: UsersController do
       end
     end
   end
+
+  describe "comments" do
+    let(:user) { create(:user) }
+    let(:component) { Users::PublicActivityComponent.new(user) }
+
+    it "doesn't show comments for disabled features" do
+      Setting["process.debates"] = false
+      Setting["process.proposals"] = false
+      Setting["process.budgets"] = false
+
+      create(:budget_investment_comment, user: user)
+      create(:debate_comment, user: user)
+      create(:proposal_comment, user: user)
+
+      render_inline component
+
+      expect(page).not_to have_content "Comments"
+    end
+  end
 end

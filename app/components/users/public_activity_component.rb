@@ -73,6 +73,7 @@ class Users::PublicActivityComponent < ApplicationComponent
     def disabled_commentables
       [
         ("Debate" unless feature?(:debates)),
+        ("Proposal" unless feature?(:proposals)),
         ("Budget::Investment" unless feature?(:budgets))
       ].compact
     end
